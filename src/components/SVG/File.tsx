@@ -16,7 +16,7 @@ export const RightArrow = ({ className = "", ...rest }: IIcon) => (
   </svg>
 );
 
-export const DownArrow = ({ className = "", ...rest }: IIcon) => (
+export const BottomArrow = ({ className = "", ...rest }: IIcon) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
@@ -39,6 +39,19 @@ export const ClosedFolder = ({ className = "", ...rest }: IIcon) => (
     {...rest}
   >
     <path d="M20 6h-6.59L11 3.59A2 2 0 0 0 9.59 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Z" />
+  </svg>
+);
+export const OpenedFolder = ({ className = "", ...rest }: IIcon) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+
+    fill="#FFA000"
+    viewBox="0 0 24 24"
+    className={`${className}`}
+    {...svgStyle}
+    {...rest}
+  >
+    <path d="M19 8H7a3 3 0 0 0-2.74 1.78L2 14.87V5a2 2 0 0 1 2-2h4a2.05 2.05 0 0 1 1.4.56L11.83 6H17a2 2 0 0 1 2 2Zm2.81 2.42A1 1 0 0 0 21 10H7a1 1 0 0 0-.91.59l-4 9A1 1 0 0 0 3 21h15a1 1 0 0 0 .95-.68l3-9a1 1 0 0 0-.14-.9Z" />
   </svg>
 );
 

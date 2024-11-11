@@ -1,11 +1,10 @@
-import FileComponent from "./components/FileComponent";
-import FolderComponent from "./components/FolderComponent";
+import RecursiveFile from "./components/RecursiveFile";
+import { fileTree } from "./data/FileTree";
 
 function App() {
   return (
     <div className="bg-black h-svh">
-      <FileComponent fileName="index.html" />
-      <FolderComponent folderName="node_modules" />
+      <RecursiveFile fileTree={fileTree} />
     </div>
   );
 }
