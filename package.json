@@ -14,8 +14,10 @@
     "@iconify-icons/mdi": "^1.2.48",
     "@iconify-icons/vscode-icons": "^1.2.29",
     "@iconify/react": "^5.0.2",
+    "@reduxjs/toolkit": "^2.3.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
