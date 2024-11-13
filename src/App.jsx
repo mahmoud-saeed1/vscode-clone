@@ -1,10 +1,10 @@
-import RecursiveFile from "./components/RecursiveFile";
+import RecursiveFileTree from "./components/RecursiveFile";
 import { fileTree } from "./data/FileTree";
 
 function App() {
   return (
     <div className="bg-black h-svh">
-      <RecursiveFile fileTree={fileTree} />
+      <RecursiveFileTree fileTree={fileTree} />
     </div>
   );
 }
