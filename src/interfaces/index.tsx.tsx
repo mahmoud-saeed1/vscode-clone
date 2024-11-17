@@ -3,6 +3,7 @@ export interface IIcon extends React.SVGProps<SVGSVGElement> {
 }
 
 export interface IFileTree {
+  id:string;
   name: string;
   isFolder: boolean;
   children?: IFileTree[]; //! only for folders

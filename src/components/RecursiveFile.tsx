@@ -5,6 +5,7 @@ import FileIcon from './FileIcon.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "../app/store.ts"
 import { setOpenedFilesAction } from "../app/features/fileTreeSliec.ts";
+import { isFileExist } from '../utils/index.ts';
 
 interface IRecursiveFileTree {
   fileTree: IFileTree;
@@ -12,7 +13,7 @@ interface IRecursiveFileTree {
 
 const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
   /*~~~~~~~~$ States $~~~~~~~~*/
-  const { name, isFolder, children } = fileTree;
+  const { name, isFolder, children, id } = fileTree;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   /*~~~~~~~~$ Gloabal States $~~~~~~~~*/
@@ -23,6 +24,13 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
   /*~~~~~~~~$ Handlers $~~~~~~~~*/
   const toggleOpen = () => setIsOpen((prev) => !prev);
 
+  const handleFileClick = () => {
+    const fileExist = isFileExist(openedFiles, id);
+
+    if (fileExist) return;
+
+    dispatch(setOpenedFilesAction([...openedFiles, fileTree]));
+  }
 
   return (
     <div className="mb-2 ml-3">
@@ -34,7 +42,7 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
             {isOpen ? <BottomArrow /> : <RightArrow />}
           </div>
         )}
-        <div className='flex items-center' onClick={() => !isFolder && dispatch(setOpenedFilesAction([...openedFiles, fileTree]))}><FileIcon filename={name} isFolder={isFolder} isOpen={isOpen} />
+        <div className='flex items-center' onClick={() => !isFolder && handleFileClick()}><FileIcon filename={name} isFolder={isFolder} isOpen={isOpen} />
           <span className="text-white font-semibold tracking-wider ml-2">{name}</span></div>
       </button>
       {isFolder && isOpen && children && (
