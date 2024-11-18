@@ -4,6 +4,7 @@ import { IFileTree } from "../../interfaces/index.tsx";
 interface IClickedFile {
   fileName: string;
   fileContent: string;
+  activeTabId: string;
 }
 
 interface IInitialState {
@@ -16,6 +17,7 @@ const initialState: IInitialState = {
   clickedFile: {
     fileName: "",
     fileContent: "",
+    activeTabId: "",
   },
 };
 
@@ -26,9 +28,14 @@ const fileTreeSlice = createSlice({
     setOpenedFilesAction: (state, action: PayloadAction<IFileTree[]>) => {
       state.openedFiles = action.payload;
     },
+
+    setClickedFileAction: (state, action: PayloadAction<IClickedFile>) => {
+      state.clickedFile = action.payload;
+    },
   },
 });
 
-export const { setOpenedFilesAction } = fileTreeSlice.actions;
+export const { setOpenedFilesAction, setClickedFileAction } =
+  fileTreeSlice.actions;
 
 export default fileTreeSlice.reducer;

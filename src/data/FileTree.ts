@@ -5,27 +5,35 @@ export const fileTree: IFileTree = {
   id: uuid(),
   name: "VS Code Clone",
   isFolder: true,
+  content: "",
   children: [
     {
       id: uuid(),
       name: "node_modules",
       isFolder: true,
+      content: "",
       children: [
         {
           id: uuid(),
           name: ".vite",
           isFolder: true,
-          children: [{ id: uuid(), name: "react.js", isFolder: false }],
+          content: "",
+          children: [
+            { id: uuid(), name: "react.js", isFolder: false, content: "" },
+          ],
         },
-        { id: uuid(), name: "index.html", isFolder: false },
+        { id: uuid(), name: "index.html", isFolder: false, content: "" },
         {
           id: uuid(),
           name: "public",
           isFolder: true,
-          children: [{ id: uuid(), name: "index.html", isFolder: false }],
+          content:"",
+          children: [
+            { id: uuid(), name: "index.html", isFolder: false, content: "" },
+          ],
         },
       ],
     },
-    { id: uuid(), name: "index.html", isFolder: false },
+    { id: uuid(), name: "index.html", isFolder: false, content: "" },
   ],
 };

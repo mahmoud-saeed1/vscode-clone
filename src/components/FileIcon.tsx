@@ -7,6 +7,7 @@ interface IFileIcon {
   filename: string;
   isFolder?: boolean;
   isOpen?: boolean;
+  className?:string;
 }
 
 const FileIcon= ({ filename, isFolder = false, isOpen = false }:IFileIcon) => {

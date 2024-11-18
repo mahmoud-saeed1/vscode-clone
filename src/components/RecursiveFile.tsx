@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { IFileTree } from '../interfaces/index.tsx';
-import { BottomArrow, RightArrow } from './SVG/File.tsx';
+import { BottomArrow, RightArrow } from './SVG/index.tsx';
 import FileIcon from './FileIcon.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "../app/store.ts"
-import { setOpenedFilesAction } from "../app/features/fileTreeSliec.ts";
+import { setClickedFileAction, setOpenedFilesAction } from "../app/features/fileTreeSliec.ts";
 import { isFileExist } from '../utils/index.ts';
 
 interface IRecursiveFileTree {
@@ -27,9 +27,11 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
   const handleFileClick = () => {
     const fileExist = isFileExist(openedFiles, id);
 
+    dispatch(setClickedFileAction({ fileName: name, fileContent: '', activeTabId: id }))
     if (fileExist) return;
 
     dispatch(setOpenedFilesAction([...openedFiles, fileTree]));
+
   }
 
   return (
