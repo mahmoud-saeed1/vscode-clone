@@ -15,11 +15,15 @@ const OpenedFileTab = ({ fileTree }: IOpenedFileTab) => {
     const { id = '', name = '', content = '' } = fileTree;
     const { clickedFile } = useSelector(({ tree }: RootState) => tree);
 
+    const handleFileTabClick = () =>{
+        dispatch(setClickedFileAction({ fileName: name, fileContent: content, activeTabId: id }))
+    }
+
     const dispatch = useDispatch();
     return (
         <li
             className={`relative flex items-center p-2 px-4 text-gray-300 border-x border-gray-700 transition duration-150 ease-in-out ${id === clickedFile.activeTabId ? 'bg-gray-900 border-t-orange-600 border-t-[3px]' : 'hover:bg-gray-800 border-t-transparent'}`}
-            onClick={() => dispatch(setClickedFileAction({ fileName: name, fileContent: content, activeTabId: id }))}
+            onClick={handleFileTabClick}
         >
             <FileIcon filename={name} />
             <p className="ml-2 text-sm truncate text-gray-200">{name}</p>

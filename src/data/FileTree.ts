@@ -19,7 +19,7 @@ export const fileTree: IFileTree = {
           isFolder: true,
           content: "",
           children: [
-            { id: uuid(), name: "react.js", isFolder: false, content: "" },
+            { id: uuid(), name: "reacts.js", isFolder: false, content: "hello world" },
           ],
         },
         { id: uuid(), name: "index.html", isFolder: false, content: "" },

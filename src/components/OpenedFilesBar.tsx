@@ -2,12 +2,8 @@ import React from 'react';
 import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
 import OpenedFileTab from './OpenedFileTab';
-import { IFileTree } from '../interfaces/index.tsx';
 
-interface IOpenedFilesBar {
-    fileTree: IFileTree;
-}
-const OpenedFilesBar = ({ fileTree }: IOpenedFilesBar) => {
+const OpenedFilesBar = () => {
     const { openedFiles, clickedFile } = useSelector(({ tree }: RootState) => tree);
 
     return (
@@ -18,8 +14,9 @@ const OpenedFilesBar = ({ fileTree }: IOpenedFilesBar) => {
                 ))}
             </ul>
 
-            
+            <p className='text-white p-4'>
             {clickedFile.fileContent}
+            </p>
         </div>
     );
 };

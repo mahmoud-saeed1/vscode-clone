@@ -9,7 +9,7 @@ function App() {
         <RecursiveFileTree fileTree={fileTree} />
       </div>
 
-      <OpenedFilesBar fileTree={fileTree} />
+      <OpenedFilesBar />
     </div>
   );
 }

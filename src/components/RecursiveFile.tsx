@@ -13,7 +13,7 @@ interface IRecursiveFileTree {
 
 const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
   /*~~~~~~~~$ States $~~~~~~~~*/
-  const { name, isFolder, children, id } = fileTree;
+  const { name, isFolder, children, id, content } = fileTree;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   /*~~~~~~~~$ Gloabal States $~~~~~~~~*/
@@ -27,12 +27,13 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
   const handleFileClick = () => {
     const fileExist = isFileExist(openedFiles, id);
 
-    dispatch(setClickedFileAction({ fileName: name, fileContent: '', activeTabId: id }))
+    dispatch(setClickedFileAction({ fileName: name, fileContent: content || '', activeTabId: id }))
     if (fileExist) return;
 
     dispatch(setOpenedFilesAction([...openedFiles, fileTree]));
 
   }
+
 
   return (
     <div className="mb-2 ml-3">
