@@ -20,3 +20,44 @@
     overflow: auto; /* Needed to enable scrolling */
 }
 
+/* WelcomeTab */
+
+.welcome-tab {
+    @apply bg-gray-900 text-white h-full flex flex-col items-center justify-center p-6;
+}
+
+.welcome-tab__logo {
+    @apply mb-4; /* Margin bottom for spacing */
+}
+
+.welcome-tab__title {
+    @apply text-2xl font-bold; /* Title styling */
+}
+
+.welcome-tab__subtitle {
+    @apply text-lg text-gray-400; /* Subtitle styling */
+}
+
+.welcome-tab__actions {
+    @apply space-x-4 mt-4; /* Horizontal spacing */
+}
+
+.welcome-tab__button {
+    @apply px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition duration-200; /* Button styling */
+}
+
+.welcome-tab__recent-files {
+    @apply mt-6; /* Margin top for spacing */
+}
+
+.welcome-tab__recent-files-title {
+    @apply text-lg font-semibold; /* Recent files title styling */
+}
+
+.welcome-tab__recent-files-list {
+    @apply list-disc list-inside mt-2; /* List styling */
+}
+
+.welcome-tab__recent-file {
+    @apply text-gray-300; /* Recent file item styling */
+}

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 
 interface IResizablePanel {
-    defaultLayout: number[] | undefined;
+    defaultLayout?: number[] | undefined;
     leftPanel: ReactNode;
     rightPanel: ReactNode;
     showLeftPanel: boolean;
