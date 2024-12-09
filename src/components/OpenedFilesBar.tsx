@@ -15,7 +15,12 @@ const OpenedFilesBar = () => {
                 ))}
             </ul>
 
-            <ContentSyntaxHighlighter content={clickedFile.fileContent} />
+            {clickedFile.fileContent ? (
+                <ContentSyntaxHighlighter content={`${clickedFile.fileContent}`} />
+            ) : (
+                <p className="text-gray-500 text-center mt-4">No code add yet.</p>
+            )}
+
         </div>
     );
 };

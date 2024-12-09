@@ -2,3 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ContentSyntaxHighlighter.css */
+
+/* Hide scrollbar for Chrome, Safari, and Opera */
+.syntax-highlighter::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar */
+}
+
+/* Hide scrollbar for Firefox */
+.syntax-highlighter {
+    scrollbar-width: none; /* Hide scrollbar */
+    overflow: auto; /* Enable scrolling */
+}
+
+/* Optional: Prevent the resizing of the scrollbar */
+.syntax-highlighter {
+    overflow: auto; /* Needed to enable scrolling */
+}
