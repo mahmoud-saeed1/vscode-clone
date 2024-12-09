@@ -2,6 +2,7 @@ import React from 'react';
 import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
 import OpenedFileTab from './OpenedFileTab';
+import ContentSyntaxHighlighter from './ContentSyntaxHighlighter';
 
 const OpenedFilesBar = () => {
     const { openedFiles, clickedFile } = useSelector(({ tree }: RootState) => tree);
@@ -14,9 +15,7 @@ const OpenedFilesBar = () => {
                 ))}
             </ul>
 
-            <p className='text-white p-4'>
-            {clickedFile.fileContent}
-            </p>
+            <ContentSyntaxHighlighter content={clickedFile.fileContent} />
         </div>
     );
 };
