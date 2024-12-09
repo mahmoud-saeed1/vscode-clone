@@ -30,11 +30,7 @@ const OpenedFileTab = ({ fileTree }: IOpenedFileTab) => {
         dispatch(setOpenedFilesAction(updatedFilesBar));
     
         // Update clickedFile state
-        dispatch(setClickedFileAction({
-            activeTabId: nextFile.id,
-            fileName: nextFile.name,
-            fileContent: nextFile.content || ''
-        }));
+        dispatch(setClickedFileAction({ fileName: nextFile.name || '', fileContent:  '', activeTabId: nextFile.id || '' }))
     };
     
     return (
