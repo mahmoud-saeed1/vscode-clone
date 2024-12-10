@@ -46,7 +46,7 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
           </div>
         )}
         <div className='flex items-center' onClick={() => !isFolder && handleFileClick()}><FileIcon filename={name} isFolder={isFolder} isOpen={isOpen} />
-          <span className="text-white font-semibold tracking-wider ml-2">{name}</span></div>
+          <span className="text-white font-semibold tracking-wider ml-2 whitespace-nowrap">{name}</span></div>
       </button>
       {isFolder && isOpen && children && (
         <div className="ml-4">
