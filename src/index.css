@@ -81,3 +81,33 @@
 .drop-menu__icon {
     @apply mr-2; 
 }
+
+/* OpenedFiles.css */
+
+.opened-files {
+    @apply bg-gray-900 text-gray-200 p-2 mb-5 rounded-md;
+}
+
+.opened-files__toggle {
+    @apply w-full flex items-center text-gray-200 py-1 px-2 rounded transition duration-200;
+}
+
+.opened-files__toggle span{
+    @apply mr-2; 
+}
+
+.opened-files__list {
+    @apply mt-2 max-h-60 overflow-y-auto; /* Limit height and add scroll */
+}
+
+.opened-files__item {
+    @apply flex items-center justify-between p-2 hover:bg-gray-800 rounded transition duration-200;
+}
+
+.opened-files__close-button {
+    @apply text-gray-400 hover:text-gray-200 mr-2;
+}
+
+.opened-files__name {
+    @apply flex items-center text-left text-gray-200 truncate flex-1;
+}

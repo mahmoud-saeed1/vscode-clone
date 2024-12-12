@@ -10,7 +10,7 @@ interface IFileIcon {
   className?:string;
 }
 
-const FileIcon= ({ filename, isFolder = false, isOpen = false }:IFileIcon) => {
+const FileIcon= ({ filename, isFolder = false, isOpen = false, className }:IFileIcon) => {
   const extension = filename.split('.').pop()?.toLowerCase();
   const folderName = filename.toLowerCase();
 
@@ -20,7 +20,7 @@ const FileIcon= ({ filename, isFolder = false, isOpen = false }:IFileIcon) => {
   }
 
   const fileIconMaping = extension ? fileIconMappings[extension] : 'mdi:file-document-outline';
-  return <Icon icon={fileIconMaping} width="24" height="24" color="#4A90E2" />;
+  return <Icon className={className} icon={fileIconMaping} width="24" height="24" color="#4A90E2" />;
 };
 
 export default FileIcon;

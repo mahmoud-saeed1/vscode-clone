@@ -36,7 +36,7 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
 
 
   return (
-    <div className="mb-2 ml-3">
+    <>
       <button className="flex items-center mb-2" onClick={toggleOpen}>
 
         {/*~~~~~~~~$ Folder Arrow $~~~~~~~~*/}
@@ -55,7 +55,7 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

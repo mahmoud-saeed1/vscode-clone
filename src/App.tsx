@@ -6,6 +6,7 @@ import RecursiveFileTree from "./components/RecursiveFile";
 import { fileTree } from "./data/FileTree";
 import OpenedFilesPreview from './components/OpenedFilesPreview';
 import WelcomeTab from './components/WelcomeTab';
+import SideBarMenu from './components/SideBarMenu';
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
   return (
     <div className="bg-gray-900 h-svh flex">
       <ResizablePanel
-        leftPanel={<div className="h-full flex flex-col space-y-2 p-4 bg-gray-800"><RecursiveFileTree fileTree={fileTree} /></div>}
+        leftPanel={<div className="h-full flex flex-col space-y-2 p-4 bg-gray-800"><SideBarMenu /></div>}
         rightPanel={openedFiles.length ? <OpenedFilesPreview /> : <WelcomeTab />}
         showLeftPanel
       />
