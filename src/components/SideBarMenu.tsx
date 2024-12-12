@@ -8,10 +8,10 @@ const SideBarMenu = () => {
     const { fileTree, openedFiles } = useSelector(({ tree }: RootState) => tree);
 
     return (
-        <div>
+        <>
             {openedFiles.length > 0 && <OpenedFiles openedFiles={openedFiles} />}
             <RecursiveFileTree fileTree={fileTree} />
-        </div>
+        </>
     )
 }
 
