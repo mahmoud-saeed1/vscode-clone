@@ -79,47 +79,41 @@ export const BottomArrow = ({ className = "", ...rest }: IIcon) => (
     <path d="m484.132 124.986-16.116-16.228c-5.072-5.068-11.82-7.86-19.032-7.86-7.208 0-13.964 2.792-19.036 7.86l-183.84 183.848L62.056 108.554c-5.064-5.068-11.82-7.856-19.028-7.856s-13.968 2.788-19.036 7.856l-16.12 16.128c-10.496 10.488-10.496 27.572 0 38.06l219.136 219.924c5.064 5.064 11.812 8.632 19.084 8.632h.084c7.212 0 13.96-3.572 19.024-8.632l218.932-219.328c5.072-5.064 7.856-12.016 7.864-19.224 0-7.212-2.792-14.068-7.864-19.128z" />
   </svg>
 );
-export const ClosedFolder = ({ className = "", ...rest }: IIcon) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="#FFA000"
-    viewBox="0 0 24 24"
-    className={`${className}`}
-    {...svgStyle}
-    {...rest}
-  >
-    <path d="M20 6h-6.59L11 3.59A2 2 0 0 0 9.59 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Z" />
-  </svg>
-);
-export const OpenedFolder = ({ className = "", ...rest }: IIcon) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
 
-    fill="#FFA000"
-    viewBox="0 0 24 24"
-    className={`${className}`}
-    {...svgStyle}
-    {...rest}
-  >
-    <path d="M19 8H7a3 3 0 0 0-2.74 1.78L2 14.87V5a2 2 0 0 1 2-2h4a2.05 2.05 0 0 1 1.4.56L11.83 6H17a2 2 0 0 1 2 2Zm2.81 2.42A1 1 0 0 0 21 10H7a1 1 0 0 0-.91.59l-4 9A1 1 0 0 0 3 21h15a1 1 0 0 0 .95-.68l3-9a1 1 0 0 0-.14-.9Z" />
-  </svg>
-);
-
-export const File = ({ className = "", ...rest }: IIcon) => (
+export const FolderPlus = ({ className = "", ...rest }: IIcon) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     className={`${className}`}
-    {...svgStyle}
+    {...svgSmallIcon}
     {...rest}
   >
     <path
-      stroke="#6b7280"
+      stroke="#d1d5db"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="M19 9v8.8c0 1.12 0 1.68-.218 2.108a2 2 0 0 1-.874.874C17.48 21 16.92 21 15.8 21H8.2c-1.12 0-1.68 0-2.108-.218a2 2 0 0 1-.874-.874C5 19.48 5 18.92 5 17.8V6.2c0-1.12 0-1.68.218-2.108a2 2 0 0 1 .874-.874C6.52 3 7.08 3 8.2 3H13m6 6-6-6m6 6h-5a1 1 0 0 1-1-1V3"
+      d="M9 13h6m-3-3v6m.063-9.937-.126-.126c-.346-.346-.519-.519-.72-.642a2.001 2.001 0 0 0-.579-.24C10.409 5 10.165 5 9.676 5H6.2c-1.12 0-1.68 0-2.108.218a2 2 0 0 0-.874.874C3 6.52 3 7.08 3 8.2v7.6c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C4.52 19 5.08 19 6.2 19h11.6c1.12 0 1.68 0 2.108-.218a2 2 0 0 0 .874-.874C21 17.48 21 16.92 21 15.8v-5.6c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C19.48 7 18.92 7 17.8 7h-3.475c-.489 0-.733 0-.963-.055-.204-.05-.4-.13-.579-.24-.201-.123-.374-.296-.72-.642Z"
+    />
+  </svg>
+);
+
+export const FilePlus = ({ className = "", ...rest }: IIcon) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    className={`${className}`}
+    {...svgSmallIcon}
+    {...rest}
+  >
+    <path
+      stroke="#d1d5db"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M13 3H8.2c-1.12 0-1.68 0-2.108.218a2 2 0 0 0-.874.874C5 4.52 5 5.08 5 6.2v11.6c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C6.52 21 7.08 21 8.2 21H12m1-18 6 6m-6-6v4.4c0 .56 0 .84.109 1.054a1 1 0 0 0 .437.437C13.76 9 14.04 9 14.6 9H19m0 0v3m-2 7h4m-2-2v4"
     />
   </svg>
 );

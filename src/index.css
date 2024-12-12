@@ -85,7 +85,6 @@
 /* OpenedFiles.css */
 
 .opened-files {
-    @apply bg-gray-900 text-gray-200 p-2 mb-5 rounded-md;
 }
 
 .opened-files__toggle {
@@ -111,3 +110,61 @@
 .opened-files__name {
     @apply flex items-center text-left text-gray-200 truncate flex-1;
 }
+
+/*~~~~~~~~$ Recursive File Tree Styles $~~~~~~~~*/
+
+.recursive-file-tree {
+    @apply w-full;
+  }
+  
+  .recursive-file-tree__button-wrapper {
+    @apply flex items-center mb-2 cursor-pointer;
+  }
+  
+  .recursive-file-tree__arrow {
+    @apply mr-2;
+  }
+  
+  .recursive-file-tree__file-name {
+    @apply flex items-center w-full;
+  }
+  
+  .recursive-file-tree__file-text {
+    @apply text-white font-semibold tracking-wider ml-2 whitespace-nowrap;
+  }
+  
+  .recursive-file-tree__add-controls {
+    @apply flex items-center space-x-2;
+  }
+  
+  .recursive-file-tree__add-button {
+    @apply p-1 hover:bg-gray-700 rounded;
+  }
+  
+  .recursive-file-tree__children {
+    @apply ml-4;
+  }
+  
+  .recursive-file-tree__add-section {
+    @apply flex items-center justify-center mb-2;
+  }
+  
+  .recursive-file-tree__input {
+    @apply bg-gray-800 border border-gray-300 text-white p-1 rounded-lg w-full;
+  }
+  
+  .recursive-file-tree__error-text {
+    @apply text-red-500 text-sm mt-1 absolute;
+  }
+  
+  .recursive-file-tree__action-buttons {
+    @apply flex space-x-2 ml-4;
+  }
+  
+  .recursive-file-tree__confirm-button {
+    @apply bg-green-600 text-white px-2 py-1 text-xs font-semibold rounded-lg;
+  }
+  
+  .recursive-file-tree__cancel-button {
+    @apply bg-red-600 text-white px-2 py-1 text-xs font-semibold rounded-lg;
+  }

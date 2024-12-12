@@ -44,7 +44,7 @@ const OpenedFiles = ({ openedFiles }: IOpenedFiles) => {
                     {openedFiles.map((file) => (
                         <li key={file.id} className="opened-files__item">
                             <button
-                                className="opened-files__close-button"
+                                className="opened-files__close-button text-gray-300"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleRemoveFileTab(file.id);
