@@ -8,7 +8,7 @@ interface IContextMenu {
     handleCloseDropMenu: () => void;
 }
 
-const ContextMenu: React.FC<IContextMenu> = ({ dropMenuPosition, handleCloseDropMenu }) => {
+const ContextMenu = ({ dropMenuPosition, handleCloseDropMenu }: IContextMenu) => {
     const { x, y } = dropMenuPosition;
 
     /*~~~~~~~~$ Refs $~~~~~~~~*/

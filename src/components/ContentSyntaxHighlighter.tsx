@@ -20,7 +20,7 @@ const ContentSyntaxHighlighter = ({ content }: IContentSyntaxHighlighter) => {
                     padding: '1rem',
                 }}
                 showLineNumbers
-                className="syntax-highlighter" // Apply the class name for styling
+                className="syntax-highlighter" 
             >
                 {String(content)}
             </SyntaxHighlighter>

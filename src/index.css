@@ -191,7 +191,7 @@
 }
 /*~~~~~~~~$ OpenedFileTab $~~~~~~~~*/
 .tabs__container {
-    @apply drop-menu bg-gray-950 text-gray-200 shadow-lg rounded-md absolute;
+    @apply drop-menu bg-gray-950 text-gray-200 shadow-lg rounded-lg absolute;
 }
 .opened-file-tab {
   @apply relative flex items-center p-2 px-4 text-gray-300 border-x border-gray-700 transition duration-150 ease-in-out;
