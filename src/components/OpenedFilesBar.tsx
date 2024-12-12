@@ -5,11 +5,14 @@ import OpenedFileTab from './OpenedFileTab';
 import ContextMenu from './DropMenu';
 
 const OpenedFilesBar: React.FC = () => {
+    /*~~~~~~~~$ States $~~~~~~~~*/
     const [contextMenuPosition, setContextMenuPosition] = useState<{ x: number; y: number }>({ x: 60, y: 20 });
     const [showContextMenu, setShowContextMenu] = useState<boolean>(false);
 
+    /*~~~~~~~~$ Selectors $~~~~~~~~*/
     const { openedFiles } = useSelector(({ tree }: RootState) => tree);
 
+    /*~~~~~~~~$ Handlers $~~~~~~~~*/
     const handleOpenContextMenu = useCallback(() => setShowContextMenu(true), []);
     const handleCloseContextMenu = useCallback(() => setShowContextMenu(false), []);
 
