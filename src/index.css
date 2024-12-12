@@ -187,5 +187,36 @@
 
 /*~~~~~~~~$ Opened Files Bar Styling $~~~~~~~~*/
 .opened-files__container{
-    @apply bg-black h-fit flex items-center border-y-2 border-gray-700;
+  @apply bg-black h-fit flex items-center border-y-2 border-gray-700;
+}
+/*~~~~~~~~$ OpenedFileTab $~~~~~~~~*/
+.tabs__container {
+    @apply drop-menu bg-gray-950 text-gray-200 shadow-lg rounded-md absolute;
+}
+.opened-file-tab {
+  @apply relative flex items-center p-2 px-4 text-gray-300 border-x border-gray-700 transition duration-150 ease-in-out;
+}
+
+.opened-file-tab--active {
+  @apply bg-gray-900 border-t-orange-600 border-t-[3px];
+}
+
+.opened-file-tab--hover {
+  @apply hover:bg-gray-800 border-t-transparent;
+}
+
+.opened-file-tab__icon {
+  @apply ml-2;
+}
+
+.opened-file-tab__name {
+  @apply ml-2 text-sm truncate text-gray-200;
+}
+
+.opened-file-tab__close-button {
+  @apply ml-2;
+}
+
+.opened-file-tab__indicator {
+  @apply w-full h-1 absolute bg-gray-900 -bottom-1 left-0;
 }

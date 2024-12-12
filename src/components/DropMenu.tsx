@@ -11,12 +11,16 @@ interface IContextMenu {
 const ContextMenu: React.FC<IContextMenu> = ({ dropMenuPosition, handleCloseDropMenu }) => {
     const { x, y } = dropMenuPosition;
 
+    /*~~~~~~~~$ Refs $~~~~~~~~*/
     const menuRef = useRef<HTMLDivElement>(null);
 
+    /*~~~~~~~~$ Selectors $~~~~~~~~*/
     const { openedFiles, tabIdToRemove } = useSelector(({ tree }: RootState) => tree);
 
+    /*~~~~~~~~$ Dispatch $~~~~~~~~*/
     const dispatch = useDispatch();
 
+    /*~~~~~~~~$ Handlers $~~~~~~~~*/
     const handleCloseAll = () => {
         dispatch(setOpenedFilesAction([]));
         handleCloseDropMenu();
@@ -30,8 +34,7 @@ const ContextMenu: React.FC<IContextMenu> = ({ dropMenuPosition, handleCloseDrop
     };
 
 
-
-    // Close the context menu when clicking outside of it
+    /*~~~~~~~~$ Effects $~~~~~~~~*/
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
             if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -49,7 +52,7 @@ const ContextMenu: React.FC<IContextMenu> = ({ dropMenuPosition, handleCloseDrop
     return (
         <div ref={menuRef}>
             <ul
-                className="drop-menu bg-gray-950 text-gray-200 shadow-lg rounded-md absolute"
+                className="tabs__container"
                 style={{ left: `${x}px`, top: `${y}px` }}
             >
                 <li className="drop-menu__item">

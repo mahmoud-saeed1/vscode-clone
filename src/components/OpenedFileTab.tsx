@@ -12,12 +12,9 @@ interface IOpenedFileTab {
 
 const OpenedFileTab: React.FC<IOpenedFileTab> = ({ fileTree }) => {
     const { id = '', name = '', content = '' } = fileTree;
-
-    /*~~~~~~~~$ Selectors $~~~~~~~~*/
     const { clickedFile, openedFiles } = useSelector((state: RootState) => state.tree);
     const dispatch = useDispatch();
 
-    /*~~~~~~~~$ Handlers $~~~~~~~~*/
     const handleFileTabClick = () => {
         dispatch(setClickedFileAction({ fileName: name, fileContent: content, activeTabId: id }));
     };
@@ -37,28 +34,25 @@ const OpenedFileTab: React.FC<IOpenedFileTab> = ({ fileTree }) => {
 
     return (
         <li
-            className={`relative flex items-center p-2 px-4 text-gray-300 border-x border-gray-700 transition duration-150 ease-in-out ${id === clickedFile.activeTabId
-                    ? 'bg-gray-900 border-t-orange-600 border-t-[3px]'
-                    : 'hover:bg-gray-800 border-t-transparent'
-                }`}
+            className={`opened-file-tab ${id === clickedFile.activeTabId ? 'opened-file-tab--active' : 'opened-file-tab--hover'}`}
             onClick={handleFileTabClick}
             onContextMenu={handleContextMenu}
         >
-            <FileIcon filename={name} />
-            <p className="ml-2 text-sm truncate text-gray-200">{name}</p>
+            <FileIcon className="opened-file-tab__icon" filename={name} />
+            <p className="opened-file-tab__name">{name}</p>
             <button
                 title="Close file tab"
                 onClick={(e) => {
                     e.stopPropagation();
                     handleRemoveFileTab(id);
                 }}
-                className="ml-2"
+                className="opened-file-tab__close-button"
             >
                 <Close />
             </button>
 
             {id === clickedFile.activeTabId && (
-                <div className="w-full h-1 absolute bg-gray-900 -bottom-1 left-0" />
+                <div className="opened-file-tab__indicator" />
             )}
         </li>
     );
