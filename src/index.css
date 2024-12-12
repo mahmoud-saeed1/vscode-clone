@@ -131,6 +131,8 @@
   .recursive-file-tree__button-wrapper {
     @apply flex items-center mb-2 cursor-pointer;
   }
+
+
   
   .recursive-file-tree__arrow {
     @apply mr-2;
@@ -145,7 +147,11 @@
   }
   
   .recursive-file-tree__add-controls {
-    @apply flex items-center space-x-2;
+    @apply hidden items-center space-x-2;
+  }
+
+  .recursive-file-tree__button-wrapper:hover .recursive-file-tree__add-controls{
+    @apply flex;
   }
   
   .recursive-file-tree__add-button {

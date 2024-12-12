@@ -86,7 +86,8 @@ export const FolderPlus = ({ className = "", ...rest }: IIcon) => (
     fill="none"
     viewBox="0 0 24 24"
     className={`${className}`}
-    {...svgSmallIcon}
+    width={25}
+    height={25}
     {...rest}
   >
     <path
@@ -105,7 +106,8 @@ export const FilePlus = ({ className = "", ...rest }: IIcon) => (
     fill="none"
     viewBox="0 0 24 24"
     className={`${className}`}
-    {...svgSmallIcon}
+    width={25}
+    height={25}
     {...rest}
   >
     <path

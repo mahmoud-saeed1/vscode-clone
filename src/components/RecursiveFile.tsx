@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { IFileTree } from '../interfaces/index.tsx';
 import { BottomArrow, FilePlus, FolderPlus, RightArrow } from './SVG/index.tsx';
 import FileIcon from './FileIcon.tsx';
@@ -15,44 +15,48 @@ const isValidFileName = (name: string) => /^[^\\/:*?"<>|]+\.[a-zA-Z0-9]+$/.test(
 const isValidFolderName = (name: string) => /^[^\\/:*?"<>|]+$/.test(name);
 
 const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
-  /*~~~~~~~~$ States $~~~~~~~~*/
+  /*~~~~~~~~$ Destructure Props $~~~~~~~~*/
   const { name, isFolder, children, id, content } = fileTree;
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isAdding, setIsAdding] = useState<boolean>(false);
+
+  /*~~~~~~~~$ States $~~~~~~~~*/
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
   const [addType, setAddType] = useState<'file' | 'folder' | null>(null);
-  const [newName, setNewName] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [newName, setNewName] = useState('');
+  const [error, setError] = useState('');
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   /*~~~~~~~~$ Global States $~~~~~~~~*/
-  const { openedFiles, fileTree: globalFileTree } = useSelector(({ tree }: RootState) => tree);
+  const { openedFiles, fileTree: globalFileTree } = useSelector((state: RootState) => state.tree);
   const dispatch = useDispatch();
 
   /*~~~~~~~~$ Handlers $~~~~~~~~*/
-  const toggleOpen = () => setIsOpen((prev) => !prev);
+  const toggleOpen = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
 
-  const handleFileClick = () => {
+  const handleFileClick = useCallback(() => {
     const fileExist = isFileExist(openedFiles, id);
     dispatch(setClickedFileAction({ fileName: name, fileContent: content || '', activeTabId: id }));
     if (!fileExist) {
       dispatch(setOpenedFilesAction([...openedFiles, fileTree]));
     }
-  };
+  }, [dispatch, openedFiles, fileTree, name, content, id]);
 
-  const handleAddClick = (type: 'file' | 'folder') => {
+  const handleAddClick = useCallback((type: 'file' | 'folder') => {
     setIsAdding(true);
     setAddType(type);
     setNewName('');
     setError('');
-  };
+  }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setNewName(e.target.value);
     setError('');
-  };
+  }, []);
 
-  const handleAddConfirm = () => {
+  const handleAddConfirm = useCallback(() => {
     if (addType === 'file' && !isValidFileName(newName)) {
       setError('Invalid file name or extension');
       return;
@@ -61,6 +65,20 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
       setError('Invalid folder name');
       return;
     }
+
+    const addNewItemToTree = (tree: IFileTree, parentId: string, newItem: IFileTree): IFileTree => {
+      if (tree.id === parentId) {
+        return {
+          ...tree,
+          children: [...(tree.children || []), newItem],
+        };
+      }
+
+      return {
+        ...tree,
+        children: tree.children?.map((child) => addNewItemToTree(child, parentId, newItem)) || [],
+      };
+    };
 
     const updatedTree = addNewItemToTree(globalFileTree, id, {
       name: newName,
@@ -74,36 +92,22 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
     setIsAdding(false);
     setAddType(null);
     setNewName('');
-  };
+  }, [addType, newName, dispatch, globalFileTree, id]);
 
-  const handleCancel = () => {
+  const handleCancel = useCallback(() => {
     setIsAdding(false);
     setAddType(null);
     setNewName('');
     setError('');
-  };
+  }, []);
 
-  const addNewItemToTree = (tree: IFileTree, parentId: string, newItem: IFileTree): IFileTree => {
-    if (tree.id === parentId) {
-      return {
-        ...tree,
-        children: [...(tree.children || []), newItem],
-      };
-    }
-
-    return {
-      ...tree,
-      children: tree.children?.map((child) => addNewItemToTree(child, parentId, newItem)) || [],
-    };
-  };
-
-  const handleOutsideClick = (e: MouseEvent) => {
+  const handleOutsideClick = useCallback((e: MouseEvent) => {
     const addSection = document.querySelector('.recursive-file-tree__add-section');
     if (addSection && addSection.contains(e.target as Node)) {
       return; // Do nothing if click is inside the add section
     }
     handleCancel();
-  };
+  }, [handleCancel]);
 
   useEffect(() => {
     if (isAdding) {
@@ -113,7 +117,7 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
     }
 
     return () => document.removeEventListener('mousedown', handleOutsideClick);
-  }, [isAdding]);
+  }, [isAdding, handleOutsideClick]);
 
   return (
     <div className="recursive-file-tree">
@@ -123,9 +127,8 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
         tabIndex={0}
         onClick={toggleOpen}
       >
-        {/*~~~~~~~~$ Folder Arrow $~~~~~~~~*/}
         {isFolder && (
-          <div className="recursive-file-tree__arrow">
+          <div className="recursive-file-tree__arrow" aria-hidden="true">
             {isOpen ? <BottomArrow /> : <RightArrow />}
           </div>
         )}
@@ -140,33 +143,31 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
           <span className="recursive-file-tree__file-text">{name}</span>
         </div>
 
-        <div className="recursive-file-tree__add-controls">
-          <div
-            role="button"
-            tabIndex={0}
+        {isFolder && <div className="recursive-file-tree__add-controls">
+          <button
             title="Add File"
             onClick={() => handleAddClick('file')}
             className="recursive-file-tree__add-button"
+            aria-label="Add File"
           >
             <FilePlus />
-          </div>
-          <div
-            role="button"
-            tabIndex={0}
+          </button>
+          <button
             title="Add Folder"
             onClick={() => handleAddClick('folder')}
             className="recursive-file-tree__add-button"
+            aria-label="Add Folder"
           >
             <FolderPlus />
-          </div>
-        </div>
+          </button>
+        </div>}
       </div>
 
       {isFolder && isOpen && (
-        <div className="recursive-file-tree__children">
+        <div className="recursive-file-tree__children" role="group">
           {isAdding && addType && (
-            <div className="recursive-file-tree__add-section ">
-              <div className='relative'>
+            <div className="recursive-file-tree__add-section">
+              <div className="relative">
                 <input
                   ref={inputRef}
                   className="recursive-file-tree__input"
@@ -193,8 +194,8 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
               </div>
             </div>
           )}
-          {children?.map((child, index) => (
-            <RecursiveFileTree key={index} fileTree={child} />
+          {children?.map((child) => (
+            <RecursiveFileTree key={child.id} fileTree={child} />
           ))}
         </div>
       )}
@@ -202,4 +203,4 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
   );
 };
 
-export default RecursiveFileTree;
+export default React.memo(RecursiveFileTree);
