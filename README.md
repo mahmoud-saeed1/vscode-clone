@@ -2,6 +2,10 @@
 
 Welcome to the VS Code Clone project! This project is a frontend application built using React and TypeScript, showcasing the basics of Redux Toolkit and recursion. It mimics the core functionalities of Visual Studio Code's interface, providing a foundation to learn and expand on advanced UI interactions.
 
+**Live Demo:** https://vscode-clone-mahmoud.vercel.app/
+
+![NDCG Algorithm](./public/project-imiage.webp "VsCode Clone App")
+
 ## Introduction 📜
 
 The VS Code Clone is designed to replicate the familiar file explorer interface of Visual Studio Code. This project focuses on leveraging modern web technologies to achieve a dynamic and interactive user experience. It also highlights the usage of Redux Toolkit to manage application state efficiently and demonstrates recursion for handling hierarchical data like file trees. Dive in to explore its features and code structure! 💪
@@ -47,7 +51,7 @@ This project incorporates the following technologies:
 
 ## Demo 🌐
 
-Stay tuned for the live demo click [Here](https://vscode-clone-pi.vercel.app)! This section will showcase the power and functionality of the VS Code Clone once deployed. 🚀
+Stay tuned for the live demo click [Here](https://vscode-clone-mahmoud.vercel.app/)! This section will showcase the power and functionality of the VS Code Clone once deployed. 🚀
 
 ## Getting Started 🚀
 
