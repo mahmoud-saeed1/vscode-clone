@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FileIcon from './FileIcon.tsx';
-import { IFileTree } from '../interfaces/index.tsx.tsx';
+import { IFileTree } from '../interfaces/index.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { setClickedFileAction, setOpenedFilesAction, setTabIdToRemoveAction } from '../app/features/fileTreeSliec.ts';
 import { Close } from './SVG/index.tsx';
