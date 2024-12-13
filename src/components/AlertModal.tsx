@@ -1,24 +1,23 @@
 import React from 'react';
 
 interface IAlertModal {
-  isOpen: boolean;
+  title: string;
   message: string;
   onConfirm: () => void;
   onCancel: () => void;
 }
 
-const AlertModal = ({ isOpen, message, onConfirm, onCancel }:IAlertModal) => {
-  if (!isOpen) return null;
-
+const AlertModal: React.FC<IAlertModal> = ({ title, message, onConfirm, onCancel }) => {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <p>{message}</p>
-        <div className="modal-actions">
-          <button className="confirm-button" onClick={onConfirm}>
+    <div className="alert-modal__overlay">
+      <div className="alert-modal__container">
+        <h3 className="alert-modal__title">{title}</h3>
+        <p className="alert-modal__message">{message}</p>
+        <div className="alert-modal__actions">
+          <button className="alert-modal__button alert-modal__button--confirm" onClick={onConfirm}>
             Confirm
           </button>
-          <button className="cancel-button" onClick={onCancel}>
+          <button className="alert-modal__button alert-modal__button--cancel" onClick={onCancel}>
             Cancel
           </button>
         </div>
@@ -27,4 +26,4 @@ const AlertModal = ({ isOpen, message, onConfirm, onCancel }:IAlertModal) => {
   );
 };
 
-export default React.memo(AlertModal);
+export default AlertModal;

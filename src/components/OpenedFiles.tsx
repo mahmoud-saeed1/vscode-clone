@@ -57,7 +57,7 @@ const OpenedFiles = ({ openedFiles }: IOpenedFiles) => {
                 onClick={handleToggle}
                 title="Toggle Open Editors"
             >
-                {isOpen ? <BottomArrow aria-hidden="true" /> : <RightArrow aria-hidden="true" />} Open Editors
+                <span>{isOpen ? <BottomArrow aria-hidden="true" /> : <RightArrow aria-hidden="true" />}</span> Open Editors
             </button>
             {isOpen && (
                 <ul className="opened-files__list" role="list">

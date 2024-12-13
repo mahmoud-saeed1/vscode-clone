@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store.ts';
 import { setClickedFileAction, setOpenedFilesAction, setFileTreeAction } from '../app/features/fileTreeSliec.ts';
 import { isFileExist } from '../utils/index.ts';
+import DeleteContextMenu from './DeleteContextMenu.tsx';
+import AlertModal from './AlertModal.tsx';
 
 interface IRecursiveFileTree {
   fileTree: IFileTree;
@@ -24,10 +26,16 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
   const [addType, setAddType] = useState<'file' | 'folder' | null>(null);
   const [newName, setNewName] = useState('');
   const [error, setError] = useState('');
+  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [contextMenuPosition, setContextMenuPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
 
+  /*~~~~~~~~$ Refs $~~~~~~~~*/
   const inputRef = useRef<HTMLInputElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  /*~~~~~~~~$ Global States $~~~~~~~~*/
+
+  /*~~~~~~~~$ Selectors $~~~~~~~~*/
   const { openedFiles, fileTree: globalFileTree } = useSelector((state: RootState) => state.tree);
   const dispatch = useDispatch();
 
@@ -109,6 +117,45 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
     handleCancel();
   }, [handleCancel]);
 
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setContextMenuPosition({ x: e.clientX, y: e.clientY });
+    setShowContextMenu(true);
+  };
+
+  const handleDelete = () => {
+    setIsAlertVisible(true);
+    setShowContextMenu(false);
+  };
+
+  const confirmDelete = useCallback(() => {
+    const deleteNodeFromTree = (tree: IFileTree, targetId: string): IFileTree | null => {
+      if (tree.id === targetId) return null;
+
+      if (tree.children) {
+        const updatedChildren = tree.children
+          .map((child) => deleteNodeFromTree(child, targetId))
+          .filter(Boolean) as IFileTree[];
+
+        return { ...tree, children: updatedChildren };
+      }
+
+      return tree;
+    };
+
+    const updatedTree = deleteNodeFromTree(globalFileTree, id);
+    dispatch(setFileTreeAction(updatedTree!));
+    setIsAlertVisible(false);
+  }, [dispatch, globalFileTree, id]);
+
+  const handleClickOutside = useCallback((e: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+      setShowContextMenu(false);
+    }
+  }, []);
+
+
+  /*~~~~~~~~$ Effects $~~~~~~~~*/
   useEffect(() => {
     if (isAdding) {
       document.addEventListener('mousedown', handleOutsideClick);
@@ -126,9 +173,10 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
         role="button"
         tabIndex={0}
         onClick={toggleOpen}
+        onContextMenu={handleContextMenu}
       >
         {isFolder && (
-          <div className="recursive-file-tree__arrow" aria-hidden="true">
+          <div className="recursive-file-tree__arrow" aria-hidden="true" onClick={toggleOpen}>
             {isOpen ? <BottomArrow /> : <RightArrow />}
           </div>
         )}
@@ -198,6 +246,23 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
             <RecursiveFileTree key={child.id} fileTree={child} />
           ))}
         </div>
+      )}
+
+      {showContextMenu && (
+        <DeleteContextMenu
+          position={contextMenuPosition}
+          handleDelete={handleDelete}
+          menuRef={menuRef}
+        />
+      )}
+
+      {isAlertVisible && (
+        <AlertModal
+          title="Confirm Deletion"
+          message={`Are you sure you want to delete "${name}"? This action cannot be undone.`}
+          onConfirm={confirmDelete}
+          onCancel={() => setIsAlertVisible(false)}
+        />
       )}
     </div>
   );

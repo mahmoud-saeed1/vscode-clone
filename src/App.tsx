@@ -8,14 +8,14 @@ import SideBarMenu from './components/SideBarMenu';
 
 
 const App = () => {
-  const { openedFiles } = useSelector(({ tree }: RootState) => tree);
+  const { openedFiles, fileTree } = useSelector(({ tree }: RootState) => tree);
   return (
     <div className="main">
-      <ResizablePanel
-        leftPanel={<div className="resizable-panel"><SideBarMenu /></div>}
+      {fileTree ? <ResizablePanel
+        leftPanel={<div className="resizable-panel"> <SideBarMenu /></div>}
         rightPanel={openedFiles.length ? <OpenedFilesPreview /> : <WelcomeTab />}
         showLeftPanel
-      />
+      /> : <WelcomeTab />}
     </div>
   )
 }

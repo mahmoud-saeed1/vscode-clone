@@ -5,7 +5,7 @@
 /*~~~~~~~~$ App Styling $~~~~~~~~*/
 /* main container */
 .main{
-  @apply bg-gray-900 h-svh flex
+  @apply bg-gray-900 h-svh flex items-center justify-center
 }
 
 /* Resizable Panel Styling */
@@ -34,7 +34,7 @@
 
 /*~~~~~~~~$ Welcome Tab Styling $~~~~~~~~*/
 .welcome-tab {
-    @apply bg-gray-900 text-white h-full flex flex-col items-center justify-center p-6;
+    @apply bg-gray-900 mt-10 text-white h-full flex flex-col items-center justify-center p-6;
 }
 
 .welcome-tab__logo {
@@ -74,27 +74,28 @@
 }
 
 /*~~~~~~~~$ Menu context Styling $~~~~~~~~*/
-.drop-menu {
+.close-contex {
     @apply bg-gray-950 p-1 text-gray-200 shadow-lg rounded-md z-50;
     @apply absolute;
     @apply border border-gray-700; 
 }
 
-.drop-menu__item {
+.close-contex__item {
     @apply w-[90%] mx-auto py-1 whitespace-nowrap; 
 }
 
-.drop-menu__button {
+.close-contex__button {
     @apply flex items-center w-full px-4 py-2 text-left rounded-lg hover:bg-gray-800 transition-colors duration-200;
 }
 
-.drop-menu__icon {
+.close-contex__icon {
     @apply mr-2; 
 }
 
 /*~~~~~~~~$ Opened Files Styling $~~~~~~~~*/
 
 .opened-files {
+    @apply bg-gray-900 text-gray-200 p-2 rounded-lg;
 }
 
 .opened-files__toggle {
@@ -131,8 +132,6 @@
     @apply flex items-center mb-2 cursor-pointer;
   }
 
-
-  
   .recursive-file-tree__arrow {
     @apply mr-2;
   }
@@ -150,7 +149,7 @@
   }
 
   .recursive-file-tree__button-wrapper:hover .recursive-file-tree__add-controls{
-    @apply flex;
+    @apply flex transition-all ease-linear duration-500;
   }
   
   .recursive-file-tree__add-button {
@@ -191,7 +190,7 @@
 }
 /*~~~~~~~~$ OpenedFileTab $~~~~~~~~*/
 .tabs__container {
-    @apply drop-menu bg-gray-950 text-gray-200 shadow-lg rounded-lg absolute;
+    @apply close-contex bg-gray-950 text-gray-200 shadow-lg rounded-lg absolute;
 }
 .opened-file-tab {
   @apply relative flex items-center p-2 px-4 text-gray-300 border-x border-gray-700 transition duration-150 ease-in-out;
@@ -221,64 +220,70 @@
   @apply w-full h-1 absolute bg-gray-900 -bottom-1 left-0;
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+/*~~~~~~~~$ Alert Modal Styling $~~~~~~~~*/
+
+/* Overlay for Modal */
+.alert-modal__overlay {
+  @apply fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50;
 }
 
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 300px;
-  text-align: center;
+/* Modal Container */
+.alert-modal__container {
+  @apply bg-[#011627] text-[#d6d6d6] p-8 rounded-lg max-w-md w-full shadow-lg border border-[#3c3f45];
 }
 
-.modal-actions {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-around;
+/* Title */
+.alert-modal__title {
+  @apply text-2xl font-semibold mb-4;
 }
 
-.confirm-button,
-.cancel-button {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
+/* Message */
+.alert-modal__message {
+  @apply text-lg mb-6;
 }
 
-.confirm-button {
-  background: red;
-  color: white;
+/* Actions */
+.alert-modal__actions {
+  @apply flex flex-col space-y-4;
 }
 
-.cancel-button {
-  background: gray;
-  color: white;
+/* Buttons */
+.alert-modal__button {
+  @apply py-3 px-6 text-lg rounded-md transition-colors duration-300;
 }
 
-.context-menu {
-  position: absolute;
-  background: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+.alert-modal__button--confirm {
+  @apply bg-green-500 text-white hover:bg-green-700;
 }
 
-.context-menu__item {
-  padding: 8px 12px;
-  cursor: pointer;
+.alert-modal__button--cancel {
+  @apply bg-red-500 text-white hover:bg-red-600;
 }
 
-.context-menu__item:hover {
-  background: #f0f0f0;
+
+/*~~~~~~~~$ Delete Context Menu Styling $~~~~~~~~*/
+
+/* Position the context menu */
+.delete-context-menu {
+  @apply absolute bg-[#011627] text-[#d6d6d6] rounded-lg shadow-md p-2 z-50 border border-[#3c3f45];
+}
+
+/* Context menu item (button) */
+.delete-context-menu__item {
+  @apply bg-red-500 text-white py-2 px-4 rounded-md cursor-pointer text-center transition-all duration-300;
+}
+
+.delete-context-menu__item:hover {
+  @apply bg-red-600;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 640px) {
+  .delete-context-menu {
+    @apply p-1;
+  }
+
+  .delete-context-menu__item {
+    @apply text-sm;
+  }
 }

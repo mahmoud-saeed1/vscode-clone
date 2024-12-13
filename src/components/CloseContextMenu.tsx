@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
-import { setOpenedFilesAction } from '../app/features/fileTreeSliec';
+import { setClickedFileAction, setOpenedFilesAction } from '../app/features/fileTreeSliec';
 
 interface IContextMenu {
     dropMenuPosition: { x: number; y: number };
     handleCloseDropMenu: () => void;
 }
 
-const ContextMenu = ({ dropMenuPosition, handleCloseDropMenu }: IContextMenu) => {
+const CloseContextMenu = ({ dropMenuPosition, handleCloseDropMenu }: IContextMenu) => {
     const { x, y } = dropMenuPosition;
 
     /*~~~~~~~~$ Refs $~~~~~~~~*/
@@ -27,10 +27,11 @@ const ContextMenu = ({ dropMenuPosition, handleCloseDropMenu }: IContextMenu) =>
     };
 
     const handleCloseTab = () => {
-        const updatedFilesBar = openedFiles.filter(file => file.id !== tabIdToRemove);
+        const updatedFiles = openedFiles.filter((file) => file.id !== tabIdToRemove);
+        const nextFile = updatedFiles[0] || { id: '', name: '', content: '' };
 
-        dispatch(setOpenedFilesAction(updatedFilesBar));
-        handleCloseDropMenu();
+        dispatch(setOpenedFilesAction(updatedFiles));
+        dispatch(setClickedFileAction({ fileName: nextFile.name || '', fileContent: nextFile.content || '', activeTabId: nextFile.id || '' }));
     };
 
 
@@ -55,13 +56,13 @@ const ContextMenu = ({ dropMenuPosition, handleCloseDropMenu }: IContextMenu) =>
                 className="tabs__container"
                 style={{ left: `${x}px`, top: `${y}px` }}
             >
-                <li className="drop-menu__item">
-                    <button className="drop-menu__button" onClick={handleCloseTab}>
+                <li className="close-contex__item">
+                    <button className="close-contex__button" onClick={handleCloseTab}>
                         Close
                     </button>
                 </li>
-                <li className="drop-menu__item">
-                    <button className="drop-menu__button" onClick={handleCloseAll}>
+                <li className="close-contex__item">
+                    <button className="close-contex__button" onClick={handleCloseAll}>
                         Close All
                     </button>
                 </li>
@@ -70,4 +71,4 @@ const ContextMenu = ({ dropMenuPosition, handleCloseDropMenu }: IContextMenu) =>
     );
 };
 
-export default ContextMenu;
+export default CloseContextMenu;

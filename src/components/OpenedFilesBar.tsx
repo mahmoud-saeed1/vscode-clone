@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { RootState } from '../app/store';
 import { useSelector } from 'react-redux';
 import OpenedFileTab from './OpenedFileTab';
-import ContextMenu from './DropMenu';
+import CloseContextMenu from './CloseContextMenu';
 
 const OpenedFilesBar: React.FC = () => {
     /*~~~~~~~~$ States $~~~~~~~~*/
@@ -39,7 +39,7 @@ const OpenedFilesBar: React.FC = () => {
             </ul>
 
             {showContextMenu && (
-                <ContextMenu
+                <CloseContextMenu
                     dropMenuPosition={contextMenuPosition}
                     handleCloseDropMenu={handleCloseContextMenu}
                 />
