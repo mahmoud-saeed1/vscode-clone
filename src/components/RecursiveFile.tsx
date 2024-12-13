@@ -74,6 +74,22 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
       return;
     }
 
+    const doesItemExist = (tree: IFileTree, parentId: string, name: string, isFolder: boolean): boolean => {
+      if (tree.id === parentId && tree.children) {
+        return tree.children.some(
+          (child) => child.name === name && child.isFolder === isFolder
+        );
+      }
+      return tree.children?.some((child) =>
+        doesItemExist(child, parentId, name, isFolder)
+      ) || false;
+    };
+
+    if (doesItemExist(globalFileTree, id, newName, addType === 'folder')) {
+      setError(`${addType === 'folder' ? 'Folder' : 'File'} with this name already exists`);
+      return;
+    }
+
     const addNewItemToTree = (tree: IFileTree, parentId: string, newItem: IFileTree): IFileTree => {
       if (tree.id === parentId) {
         return {
@@ -101,6 +117,7 @@ const RecursiveFileTree = ({ fileTree }: IRecursiveFileTree) => {
     setAddType(null);
     setNewName('');
   }, [addType, newName, dispatch, globalFileTree, id]);
+
 
   const handleCancel = useCallback(() => {
     setIsAdding(false);
