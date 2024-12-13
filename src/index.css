@@ -16,18 +16,18 @@
 /* ContentSyntaxHighlighter */
 
 /* Hide scrollbar for Chrome, Safari, and Opera */
-.syntax-highlighter::-webkit-scrollbar {
+.syntax-highlighter::-webkit-scrollbar, .opened-files__list::-webkit-scrollbar {
     display: none; 
 }
 
 /* Hide scrollbar for Firefox */
-.syntax-highlighter {
+.syntax-highlighter, .opened-files__list {
     scrollbar-width: none; 
     overflow: auto; 
 }
 
 /* Optional: Prevent the resizing of the scrollbar */
-.syntax-highlighter {
+.syntax-highlighter, .opened-files__list {
     overflow: auto; 
 }
 
@@ -107,7 +107,7 @@
 }
 
 .opened-files__list {
-    @apply mt-2 max-h-60 overflow-y-auto; /* Limit height and add scroll */
+    @apply max-h-48 overflow-x-hidden overflow-y-scroll mt-2 ; 
 }
 
 .opened-files__item {
