@@ -32,6 +32,7 @@ const CloseContextMenu = ({ dropMenuPosition, handleCloseDropMenu }: IContextMen
 
         dispatch(setOpenedFilesAction(updatedFiles));
         dispatch(setClickedFileAction({ fileName: nextFile.name || '', fileContent: nextFile.content || '', activeTabId: nextFile.id || '' }));
+        handleCloseDropMenu();
     };
 
 
