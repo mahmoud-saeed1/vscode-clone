@@ -169,7 +169,7 @@
   }
   
   .recursive-file-tree__error-text {
-    @apply text-red-500 text-sm mt-1 absolute;
+    @apply text-red-500 text-sm whitespace-nowrap;
   }
   
   .recursive-file-tree__action-buttons {
