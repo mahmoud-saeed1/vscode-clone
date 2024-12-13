@@ -220,3 +220,65 @@
 .opened-file-tab__indicator {
   @apply w-full h-1 absolute bg-gray-900 -bottom-1 left-0;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirm-button,
+.cancel-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background: red;
+  color: white;
+}
+
+.cancel-button {
+  background: gray;
+  color: white;
+}
+
+.context-menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.context-menu__item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.context-menu__item:hover {
+  background: #f0f0f0;
+}

@@ -59,7 +59,7 @@ To run the project locally, follow these steps:
 
 1. 🧪 Clone the repository:
    ```bash
-   git clone https://github.com/your-username/vscode-clone.git
+   git clone git@github.com:mahmoud-saeed1/vscode-clone.git
    ```
 2. 📂 Navigate to the project directory:
    ```bash
